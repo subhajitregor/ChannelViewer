@@ -7,14 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9F5B4AEC29F1838100878991 /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = 9F5B4AEB29F1838100878991 /* Swinject */; };
+		9F5B4AEF29F1840E00878991 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 9F5B4AEE29F1840E00878991 /* SnapKit */; };
 		9F7F64F429ECF2DE00E5F5A1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7F64F329ECF2DE00E5F5A1 /* AppDelegate.swift */; };
-		9F7F64F629ECF2DE00E5F5A1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7F64F529ECF2DE00E5F5A1 /* ViewController.swift */; };
-		9F7F64F929ECF2DE00E5F5A1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F7F64F729ECF2DE00E5F5A1 /* Main.storyboard */; };
 		9F7F64FB29ECF2DF00E5F5A1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F7F64FA29ECF2DF00E5F5A1 /* Assets.xcassets */; };
 		9F7F64FE29ECF2DF00E5F5A1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F7F64FC29ECF2DF00E5F5A1 /* LaunchScreen.storyboard */; };
 		9F7F650829ECF2DF00E5F5A1 /* ChannelViewerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7F650729ECF2DF00E5F5A1 /* ChannelViewerTests.swift */; };
 		9F7F651229ECF2DF00E5F5A1 /* ChannelViewerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7F651129ECF2DF00E5F5A1 /* ChannelViewerUITests.swift */; };
 		9F7F651429ECF2DF00E5F5A1 /* ChannelViewerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7F651329ECF2DF00E5F5A1 /* ChannelViewerUITestsLaunchTests.swift */; };
+		9F7F652629ECFB6600E5F5A1 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7F652529ECFB6600E5F5A1 /* HomeVC.swift */; };
+		9F7F652E29ECFE5500E5F5A1 /* DifferenceKit in Frameworks */ = {isa = PBXBuildFile; productRef = 9F7F652D29ECFE5500E5F5A1 /* DifferenceKit */; };
+		9F7F653129ED089600E5F5A1 /* HomeInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7F653029ED089600E5F5A1 /* HomeInteractor.swift */; };
+		9F7F653429ED08AE00E5F5A1 /* HomePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7F653329ED08AE00E5F5A1 /* HomePresenter.swift */; };
+		9F7F653629ED08D300E5F5A1 /* HomeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7F653529ED08D300E5F5A1 /* HomeRouter.swift */; };
+		9F7F653829ED098E00E5F5A1 /* DIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7F653729ED098E00E5F5A1 /* DIContainer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,10 +41,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9F5B4AE929F17FD000878991 /* .gitignore.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = .gitignore.md; sourceTree = "<group>"; };
 		9F7F64F029ECF2DE00E5F5A1 /* ChannelViewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChannelViewer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F7F64F329ECF2DE00E5F5A1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		9F7F64F529ECF2DE00E5F5A1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		9F7F64F829ECF2DE00E5F5A1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9F7F64FA29ECF2DF00E5F5A1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9F7F64FD29ECF2DF00E5F5A1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9F7F650329ECF2DF00E5F5A1 /* ChannelViewerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChannelViewerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -46,6 +51,11 @@
 		9F7F650D29ECF2DF00E5F5A1 /* ChannelViewerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChannelViewerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F7F651129ECF2DF00E5F5A1 /* ChannelViewerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelViewerUITests.swift; sourceTree = "<group>"; };
 		9F7F651329ECF2DF00E5F5A1 /* ChannelViewerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelViewerUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		9F7F652529ECFB6600E5F5A1 /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
+		9F7F653029ED089600E5F5A1 /* HomeInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeInteractor.swift; sourceTree = "<group>"; };
+		9F7F653329ED08AE00E5F5A1 /* HomePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePresenter.swift; sourceTree = "<group>"; };
+		9F7F653529ED08D300E5F5A1 /* HomeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRouter.swift; sourceTree = "<group>"; };
+		9F7F653729ED098E00E5F5A1 /* DIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DIContainer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +63,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F5B4AEF29F1840E00878991 /* SnapKit in Frameworks */,
+				9F7F652E29ECFE5500E5F5A1 /* DifferenceKit in Frameworks */,
+				9F5B4AEC29F1838100878991 /* Swinject in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -73,9 +86,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9F65AE2A29EF02FE00032AEF /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				9F7F652F29ED087600E5F5A1 /* Home */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
 		9F7F64E729ECF2DE00E5F5A1 = {
 			isa = PBXGroup;
 			children = (
+				9F5B4AE929F17FD000878991 /* .gitignore.md */,
 				9F7F64F229ECF2DE00E5F5A1 /* ChannelViewer */,
 				9F7F650629ECF2DF00E5F5A1 /* ChannelViewerTests */,
 				9F7F651029ECF2DF00E5F5A1 /* ChannelViewerUITests */,
@@ -96,11 +118,9 @@
 		9F7F64F229ECF2DE00E5F5A1 /* ChannelViewer */ = {
 			isa = PBXGroup;
 			children = (
-				9F7F64F329ECF2DE00E5F5A1 /* AppDelegate.swift */,
-				9F7F64F529ECF2DE00E5F5A1 /* ViewController.swift */,
-				9F7F64F729ECF2DE00E5F5A1 /* Main.storyboard */,
-				9F7F64FA29ECF2DF00E5F5A1 /* Assets.xcassets */,
-				9F7F64FC29ECF2DF00E5F5A1 /* LaunchScreen.storyboard */,
+				9F7F652229ECF46E00E5F5A1 /* Application */,
+				9F7F652129ECF45300E5F5A1 /* Resources */,
+				9F7F652029ECF41D00E5F5A1 /* AppDelegate */,
 			);
 			path = ChannelViewer;
 			sourceTree = "<group>";
@@ -122,6 +142,59 @@
 			path = ChannelViewerUITests;
 			sourceTree = "<group>";
 		};
+		9F7F652029ECF41D00E5F5A1 /* AppDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				9F7F64F329ECF2DE00E5F5A1 /* AppDelegate.swift */,
+			);
+			path = AppDelegate;
+			sourceTree = "<group>";
+		};
+		9F7F652129ECF45300E5F5A1 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				9F7F64FA29ECF2DF00E5F5A1 /* Assets.xcassets */,
+				9F7F64FC29ECF2DF00E5F5A1 /* LaunchScreen.storyboard */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		9F7F652229ECF46E00E5F5A1 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				9F7F652429ECF48100E5F5A1 /* DIContainer */,
+				9F7F652329ECF47700E5F5A1 /* Modules */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		9F7F652329ECF47700E5F5A1 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				9F65AE2A29EF02FE00032AEF /* Scenes */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		9F7F652429ECF48100E5F5A1 /* DIContainer */ = {
+			isa = PBXGroup;
+			children = (
+				9F7F653729ED098E00E5F5A1 /* DIContainer.swift */,
+			);
+			path = DIContainer;
+			sourceTree = "<group>";
+		};
+		9F7F652F29ED087600E5F5A1 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				9F7F652529ECFB6600E5F5A1 /* HomeVC.swift */,
+				9F7F653329ED08AE00E5F5A1 /* HomePresenter.swift */,
+				9F7F653029ED089600E5F5A1 /* HomeInteractor.swift */,
+				9F7F653529ED08D300E5F5A1 /* HomeRouter.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -138,6 +211,11 @@
 			dependencies = (
 			);
 			name = ChannelViewer;
+			packageProductDependencies = (
+				9F7F652D29ECFE5500E5F5A1 /* DifferenceKit */,
+				9F5B4AEB29F1838100878991 /* Swinject */,
+				9F5B4AEE29F1840E00878991 /* SnapKit */,
+			);
 			productName = ChannelViewer;
 			productReference = 9F7F64F029ECF2DE00E5F5A1 /* ChannelViewer.app */;
 			productType = "com.apple.product-type.application";
@@ -210,6 +288,11 @@
 				Base,
 			);
 			mainGroup = 9F7F64E729ECF2DE00E5F5A1;
+			packageReferences = (
+				9F7F652C29ECFE5500E5F5A1 /* XCRemoteSwiftPackageReference "DifferenceKit" */,
+				9F5B4AEA29F1838100878991 /* XCRemoteSwiftPackageReference "Swinject" */,
+				9F5B4AED29F1840E00878991 /* XCRemoteSwiftPackageReference "SnapKit" */,
+			);
 			productRefGroup = 9F7F64F129ECF2DE00E5F5A1 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -228,7 +311,6 @@
 			files = (
 				9F7F64FE29ECF2DF00E5F5A1 /* LaunchScreen.storyboard in Resources */,
 				9F7F64FB29ECF2DF00E5F5A1 /* Assets.xcassets in Resources */,
-				9F7F64F929ECF2DE00E5F5A1 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -253,8 +335,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9F7F64F629ECF2DE00E5F5A1 /* ViewController.swift in Sources */,
+				9F7F653129ED089600E5F5A1 /* HomeInteractor.swift in Sources */,
 				9F7F64F429ECF2DE00E5F5A1 /* AppDelegate.swift in Sources */,
+				9F7F652629ECFB6600E5F5A1 /* HomeVC.swift in Sources */,
+				9F7F653429ED08AE00E5F5A1 /* HomePresenter.swift in Sources */,
+				9F7F653829ED098E00E5F5A1 /* DIContainer.swift in Sources */,
+				9F7F653629ED08D300E5F5A1 /* HomeRouter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -291,14 +377,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		9F7F64F729ECF2DE00E5F5A1 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				9F7F64F829ECF2DE00E5F5A1 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		9F7F64FC29ECF2DF00E5F5A1 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -434,7 +512,6 @@
 				DEVELOPMENT_TEAM = YXUXCVBT88;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UIUserInterfaceStyle = Automatic;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -459,7 +536,6 @@
 				DEVELOPMENT_TEAM = YXUXCVBT88;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UIUserInterfaceStyle = Automatic;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -590,6 +666,51 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		9F5B4AEA29F1838100878991 /* XCRemoteSwiftPackageReference "Swinject" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Swinject/Swinject.git";
+			requirement = {
+				kind = upToNextMinorVersion;
+				minimumVersion = 2.8.0;
+			};
+		};
+		9F5B4AED29F1840E00878991 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.1;
+			};
+		};
+		9F7F652C29ECFE5500E5F5A1 /* XCRemoteSwiftPackageReference "DifferenceKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ra1028/DifferenceKit.git";
+			requirement = {
+				kind = exactVersion;
+				version = 1.3.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		9F5B4AEB29F1838100878991 /* Swinject */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9F5B4AEA29F1838100878991 /* XCRemoteSwiftPackageReference "Swinject" */;
+			productName = Swinject;
+		};
+		9F5B4AEE29F1840E00878991 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9F5B4AED29F1840E00878991 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+		9F7F652D29ECFE5500E5F5A1 /* DifferenceKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9F7F652C29ECFE5500E5F5A1 /* XCRemoteSwiftPackageReference "DifferenceKit" */;
+			productName = DifferenceKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 9F7F64E829ECF2DE00E5F5A1 /* Project object */;
 }
