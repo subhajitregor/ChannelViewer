@@ -1,12 +1,30 @@
 {
   "pins" : [
     {
+      "identity" : "alamofire",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Alamofire/Alamofire.git",
+      "state" : {
+        "branch" : "4.9.0",
+        "revision" : "ce5be6fbc6f51414c49f56fc8e2b7c99253d9f8e"
+      }
+    },
+    {
       "identity" : "differencekit",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/ra1028/DifferenceKit.git",
       "state" : {
         "revision" : "073b9671ce2b9b5b96398611427a1f929927e428",
         "version" : "1.3.0"
+      }
+    },
+    {
+      "identity" : "promisekit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/mxcl/PromiseKit",
+      "state" : {
+        "revision" : "bef89714164f008e091c4c2f57b98d07890d031d",
+        "version" : "6.8.0"
       }
     },
     {

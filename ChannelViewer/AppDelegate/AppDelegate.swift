@@ -10,11 +10,12 @@ import UIKit
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-    var window: UIWindow? = UIWindow(frame: UIScreen.main.bounds)
-
+    lazy var window: UIWindow? = UIWindow(frame: UIScreen.main.bounds)
+    private let dependencyContainer = DIContainer.shared
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        window?.rootViewController = HomeVC()
+        let mainRouter = MainRouter(rootTransition: EmptyTransition(), container: dependencyContainer)
+        window?.rootViewController = mainRouter.openHome()
         window?.makeKeyAndVisible()
         return true
     }

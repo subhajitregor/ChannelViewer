@@ -16,9 +16,17 @@ final class DIContainer {
     private init() {
         self.assembler = Assembler(
             [
-                
+                HomeAssembly()
             ],
             container: container)
     }
+    
+    func resolve<T>() -> T {
+        guard let resolvedType = container.resolve(T.self) else {
+            fatalError()
+        }
+        return resolvedType
+    }
+
 }
 
