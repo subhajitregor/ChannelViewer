@@ -14,7 +14,7 @@ final class HomeRemoteDataSource: HomeDataSource {
         return fetchChannelItems()
     }
     
-    func fetchChannelItems() -> Promise<[ChannelItem]> {
+    private func fetchChannelItems() -> Promise<[ChannelItem]> {
         let p1 = getDataFromChannelsAPI()
         let p2 = getDataFromProgramItemsAPI()
         
@@ -33,7 +33,7 @@ final class HomeRemoteDataSource: HomeDataSource {
         }
     }
     
-    func getDataFromChannelsAPI() -> Promise<[Channel]> {
+    private func getDataFromChannelsAPI() -> Promise<[Channel]> {
         return Promise { seal in
             ChannelsAPI.channelsGet { data, error in
                 guard error == nil else {
@@ -49,7 +49,7 @@ final class HomeRemoteDataSource: HomeDataSource {
         }
     }
     
-    func getDataFromProgramItemsAPI() -> Promise<[ProgramItem]> {
+    private func getDataFromProgramItemsAPI() -> Promise<[ProgramItem]> {
         return Promise { seal in
             ProgramItemsAPI.programItemsGet { data, error in
                 guard error == nil else {
@@ -66,7 +66,7 @@ final class HomeRemoteDataSource: HomeDataSource {
         }
     }
     
-    func createChannelItemModel(channels: [Channel], items: [ProgramItem] = []) -> [ChannelItem] {
+    private func createChannelItemModel(channels: [Channel], items: [ProgramItem] = []) -> [ChannelItem] {
         var groupedPrograms: [Int: [Program]] = [:]
         
         if !items.isEmpty {
