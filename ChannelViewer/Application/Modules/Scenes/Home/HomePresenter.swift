@@ -23,6 +23,11 @@ final class HomePresenter {
     weak var view: HomePresenterToViewProtocol?
     var interactor: HomePresenterToInteractorProtocol?
     var router: HomePresenterToRouterProtocol?
+    
+    init(view: HomePresenterToViewProtocol?,
+         interactor: HomePresenterToInteractorProtocol?) {
+        
+    }
 }
 
 extension HomePresenter: HomeViewToPresenterProtocol {

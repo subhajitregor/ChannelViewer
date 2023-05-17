@@ -13,6 +13,10 @@ protocol HomeInteractorToPresenterProtocol: AnyObject {
 
 final class HomeInteractor {
     weak var presenter: HomeInteractorToPresenterProtocol?
+    
+    init(presenter: HomeInteractorToPresenterProtocol?) {
+        self.presenter = presenter
+    }
 }
 
 extension HomeInteractor: HomePresenterToInteractorProtocol {
