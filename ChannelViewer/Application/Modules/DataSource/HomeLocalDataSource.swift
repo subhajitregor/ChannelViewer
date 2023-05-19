@@ -8,8 +8,23 @@
 import Foundation
 import PromiseKit
 
-final class HomeLocalDataSource: HomeDataSource {
-    func getAllChannelsAndPrograms() -> Promise<[ChannelItem]> {
-        return .value([])
+protocol HomeLocalDataSourceProtocol {
+    func insertIntoLocalData(from channelItems: [ChannelItem]) -> Promise<Bool>
+    func fetchFromLocalData() -> Promise<[ChannelItem]>
+}
+
+final class HomeLocalDataSource: HomeLocalDataSourceProtocol {
+    let worker: CoreDataWorkerProtocol
+    
+    init(worker: CoreDataWorkerProtocol) {
+        self.worker = worker
+    }
+    
+    func insertIntoLocalData(from channelItems: [ChannelItem]) -> Promise<Bool> {
+        worker.updateOrInsert(entities: channelItems)
+    }
+    
+    func fetchFromLocalData() -> PromiseKit.Promise<[ChannelItem]> {
+        worker.get()
     }
 }

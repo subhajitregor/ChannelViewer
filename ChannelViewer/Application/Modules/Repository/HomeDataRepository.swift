@@ -12,16 +12,12 @@ protocol HomeRepository {
     func getAllChannelsAndPrograms() -> Promise<[ChannelItem]>
 }
 
-protocol HomeDataSource {
-    func getAllChannelsAndPrograms() -> Promise<[ChannelItem]>
-}
-
 final class HomeDataRepository: HomeRepository {
     
-    private let remoteDataSource: HomeDataSource
-    private let localDataSource: HomeDataSource
+    private let remoteDataSource: HomeRemoteDataSourceProtocol
+    private let localDataSource: HomeLocalDataSourceProtocol
     
-    init(remoteDataSource: HomeDataSource, localDataSource: HomeDataSource) {
+    init(remoteDataSource: HomeRemoteDataSourceProtocol, localDataSource: HomeLocalDataSourceProtocol) {
         self.remoteDataSource = remoteDataSource
         self.localDataSource = localDataSource
     }
