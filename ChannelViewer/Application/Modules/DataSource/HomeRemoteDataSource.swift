@@ -9,7 +9,11 @@ import Foundation
 import PromiseKit
 import CVAPIClient
 
-final class HomeRemoteDataSource: HomeDataSource {
+protocol HomeRemoteDataSourceProtocol {
+    func getAllChannelsAndPrograms() -> Promise<[ChannelItem]>
+}
+
+final class HomeRemoteDataSource: HomeRemoteDataSourceProtocol {
     func getAllChannelsAndPrograms() -> Promise<[ChannelItem]> {
         return fetchChannelItems()
     }
@@ -72,17 +76,19 @@ final class HomeRemoteDataSource: HomeDataSource {
         if !items.isEmpty {
             for program in items {
                 let newProgram = Program(startTime: program.startTime,
-                                         _id: program.recentAirTime?._id,
                                          length: program.length,
-                                         name: program.name)
+                                         name: program.name,
+                                         _id: program.recentAirTime?._id,
+                                         channelID: program.recentAirTime?.channelID)
                 
                 groupedPrograms[program.recentAirTime?.channelID ?? 0]?.append(newProgram)
             }
         }
         
         return channels.compactMap { ChannelItem(orderNum: $0.orderNum,
-                                                 accessNum: $0.accessNum, callSign: $0.callSign,
+                                                 accessNum: $0.accessNum,
+                                                 callSign: $0.callSign,
                                                  _id: $0._id,
-                                                 programs: groupedPrograms[$0._id ?? 0] ?? [])}
+                                                 program: groupedPrograms[$0._id ?? 0] ?? [])}
     }
 }
