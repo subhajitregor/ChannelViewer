@@ -12,6 +12,7 @@ struct ChannelItem {
     let accessNum: Int?
     let callSign: String?
     let _id: Int?
+    let createdAt: Date?
     var program: [Program] = []
 }
 
@@ -22,6 +23,7 @@ extension ChannelItem {
         self.callSign = cdChannelItem.callSign
         self._id = Int(cdChannelItem.id)
         self.program = programs
+        self.createdAt = cdChannelItem.createdAt
     }
 }
 
