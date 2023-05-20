@@ -16,7 +16,10 @@ final class DIContainer {
     private init() {
         self.assembler = Assembler(
             [
-                HomeAssembly()
+                HomeAssembly(),
+                ServiceAssembly(),
+                DataSourceAssembly(),
+                RepositoryAssembly()
             ],
             container: container)
     }

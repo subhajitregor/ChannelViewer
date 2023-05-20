@@ -44,6 +44,9 @@
 		9FA4C2E22A167C9000B11A20 /* Program.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA4C2E12A167C9000B11A20 /* Program.swift */; };
 		9FA4C2E42A172EC800B11A20 /* CoreDataWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA4C2E32A172EC800B11A20 /* CoreDataWorker.swift */; };
 		9FA4C2E62A172F7100B11A20 /* CustomManagedObjectProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA4C2E52A172F7100B11A20 /* CustomManagedObjectProtocols.swift */; };
+		9FA4C2E82A1861C800B11A20 /* ServiceAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA4C2E72A1861C800B11A20 /* ServiceAssembler.swift */; };
+		9FA4C2EB2A1862E500B11A20 /* DataSourceAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA4C2EA2A1862E500B11A20 /* DataSourceAssembler.swift */; };
+		9FA4C2ED2A1864D400B11A20 /* RepositoryAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA4C2EC2A1864D400B11A20 /* RepositoryAssembler.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -114,6 +117,9 @@
 		9FA4C2E12A167C9000B11A20 /* Program.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Program.swift; sourceTree = "<group>"; };
 		9FA4C2E32A172EC800B11A20 /* CoreDataWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataWorker.swift; sourceTree = "<group>"; };
 		9FA4C2E52A172F7100B11A20 /* CustomManagedObjectProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomManagedObjectProtocols.swift; sourceTree = "<group>"; };
+		9FA4C2E72A1861C800B11A20 /* ServiceAssembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceAssembler.swift; sourceTree = "<group>"; };
+		9FA4C2EA2A1862E500B11A20 /* DataSourceAssembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSourceAssembler.swift; sourceTree = "<group>"; };
+		9FA4C2EC2A1864D400B11A20 /* RepositoryAssembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryAssembler.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -187,6 +193,9 @@
 			isa = PBXGroup;
 			children = (
 				9F5F4FED2A0A5E4800EFD1AD /* HomeAssembler.swift */,
+				9FA4C2E72A1861C800B11A20 /* ServiceAssembler.swift */,
+				9FA4C2EA2A1862E500B11A20 /* DataSourceAssembler.swift */,
+				9FA4C2EC2A1864D400B11A20 /* RepositoryAssembler.swift */,
 			);
 			path = Assemblers;
 			sourceTree = "<group>";
@@ -521,6 +530,7 @@
 				9F5F4FEE2A0A5E4800EFD1AD /* HomeAssembler.swift in Sources */,
 				9FA4C2B82A13A28200B11A20 /* APIError.swift in Sources */,
 				9FA4C2B22A118A5400B11A20 /* HomeLocalDataSource.swift in Sources */,
+				9FA4C2ED2A1864D400B11A20 /* RepositoryAssembler.swift in Sources */,
 				9FA4C2E02A167C8500B11A20 /* ChannelItem.swift in Sources */,
 				9FA4C2E22A167C9000B11A20 /* Program.swift in Sources */,
 				9F55C4952A09BC7A00C11690 /* MainRouter.swift in Sources */,
@@ -533,6 +543,8 @@
 				9FA4C2DC2A167C2500B11A20 /* CDProgram+CoreDataProperties.swift in Sources */,
 				9F7F653829ED098E00E5F5A1 /* DIContainer.swift in Sources */,
 				9FA4C2AB2A0E8C4600B11A20 /* HomeDataRepository.swift in Sources */,
+				9FA4C2EB2A1862E500B11A20 /* DataSourceAssembler.swift in Sources */,
+				9FA4C2E82A1861C800B11A20 /* ServiceAssembler.swift in Sources */,
 				9FA4C2DE2A167C2500B11A20 /* CDChannelItem+CoreDataProperties.swift in Sources */,
 				9F55C4A02A09BE4F00C11690 /* HomeRoute.swift in Sources */,
 				9F55C4982A09BCB700C11690 /* Transition.swift in Sources */,
