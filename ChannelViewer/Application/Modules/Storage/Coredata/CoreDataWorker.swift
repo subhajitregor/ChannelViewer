@@ -26,9 +26,10 @@ extension CoreDataWorkerProtocol {
     }
 }
 
-enum CoreDataWorkerError: Error{
+enum CoreDataWorkerError: Error {
     case cannotFetch(String)
     case cannotSave(Error)
+    case dataSetEmpty
 }
 
 final class CoreDataWorker: CoreDataWorkerProtocol {
@@ -53,6 +54,9 @@ final class CoreDataWorker: CoreDataWorkerProtocol {
                     }
                     let results = try context.fetch(fetchRequest) as? [Entity.ManagedObject]
                     let items: [Entity] = results?.compactMap { $0.toEntity() as? Entity } ?? []
+                    if items.isEmpty {
+                        return seal.reject(CoreDataWorkerError.dataSetEmpty)
+                    }
                     seal.fulfill(items)
                 } catch {
                     let fetchError = CoreDataWorkerError.cannotFetch("Cannot fetch error: \(error))")
