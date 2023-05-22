@@ -23,8 +23,9 @@ extension CDChannelItem: ManagedObjectProtocol {
 
 extension ChannelItem: ManagedObjectConvertible {
     func toManagedObject(in context: NSManagedObjectContext) -> CDChannelItem? {
-        let channel = CDChannelItem.getOrCreateSingle(with: "\(_id ?? 0)", from: context)
-        channel.id = Int32(_id ?? 0)
+        let itemId = Int32(_id ?? 0)
+        let channel = CDChannelItem.getOrCreateSingle(with: itemId, from: context)
+        channel.id = itemId
         channel.accessNum = Int32(accessNum ?? 0)
         channel.callSign = callSign
         channel.orderNum = Int32(orderNum ?? 0)

@@ -13,7 +13,7 @@ protocol HomeRoute {
 
 extension HomeRoute where Self: Router {
     func openHome(with transition: Transition) -> UIViewController {
-        let viewController: HomeVC = HomeVC(presenter: container.resolve())
+        let viewController: HomeVC = container.resolve(HomeVC.self)!
         let navigationController = UINavigationController(rootViewController: viewController)
         return navigationController
     }

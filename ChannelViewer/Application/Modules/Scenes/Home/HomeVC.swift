@@ -7,8 +7,10 @@
 
 import UIKit
 
-protocol HomeViewToPresenterProtocol {
-    func viewDidLoad()
+protocol HomePresenterToViewProtocol: AnyObject {
+    func showEmptyView()
+    func showErrorStateView()
+    func showChannelsAndPrograms()
 }
 
 final class HomeVC: UIViewController {
@@ -51,15 +53,6 @@ final class HomeVC: UIViewController {
 
     // MARK: - Lifecycle Methods -
     
-    init(presenter: HomeViewToPresenterProtocol?) {
-        self.presenter = presenter
-        super.init(nibName: nil, bundle: .main)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         presenter?.viewDidLoad()
@@ -69,6 +62,18 @@ final class HomeVC: UIViewController {
 
 // MARK: - HomePresenterToViewProtocol -
 extension HomeVC: HomePresenterToViewProtocol {
+    func showEmptyView() {
+        
+    }
+    
+    func showErrorStateView() {
+        
+    }
+    
+    func showChannelsAndPrograms() {
+        
+    }
+    
     
 }
 
