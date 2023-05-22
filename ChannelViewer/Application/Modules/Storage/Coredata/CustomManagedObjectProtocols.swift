@@ -19,9 +19,9 @@ protocol ManagedObjectProtocol {
 }
 
 extension ManagedObjectProtocol where Self: NSManagedObject {
-    static func getOrCreateSingle(with id: String, from context: NSManagedObjectContext) -> Self {
+    static func getOrCreateSingle(with id: Int32, from context: NSManagedObjectContext) -> Self {
         let result = single(with: id, from: context) ?? insertNew(in: context)
-        result.setValue(id, forKey: "identifier")
+        result.setValue(id, forKey: "id")
         return result
     }
     
@@ -31,8 +31,8 @@ extension ManagedObjectProtocol where Self: NSManagedObject {
                      sortDescriptors: sortDescriptors, fetchLimit: 1)?.first
     }
     
-    static func single(with id: String, from context: NSManagedObjectContext) -> Self? {
-        let predicate = NSPredicate(format: "identifier == %@", id)
+    static func single(with id: Int32, from context: NSManagedObjectContext) -> Self? {
+        let predicate = NSPredicate(format: "id == %d", id)
         return single(from: context, with: predicate, sortDescriptors: nil)
     }
     

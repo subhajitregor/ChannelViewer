@@ -14,17 +14,19 @@ protocol HomeLocalDataSourceProtocol {
 }
 
 final class HomeLocalDataSource: HomeLocalDataSourceProtocol {
-    let worker: CoreDataWorkerProtocol
+    let worker: CoreDataWorkerProtocol?
     
-    init(worker: CoreDataWorkerProtocol) {
+    init(worker: CoreDataWorkerProtocol?) {
         self.worker = worker
     }
     
     func insertIntoLocalData(from channelItems: [ChannelItem]) -> Promise<Bool> {
-        worker.updateOrInsert(entities: channelItems)
+        guard let worker = worker else { return .value(false) }
+        return worker.updateOrInsert(entities: channelItems)
     }
     
     func fetchFromLocalData() -> PromiseKit.Promise<[ChannelItem]> {
-        worker.get()
+        guard let worker = worker else { return .value([]) }
+        return worker.get()
     }
 }

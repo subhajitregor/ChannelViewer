@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Swinject
 
 protocol Closable: AnyObject {
     func close()
@@ -18,7 +19,7 @@ protocol Routable: AnyObject {
 protocol Router: Routable {
     var rootController: UIViewController? { get set }
     
-    var container: DIContainer { get }
+    var container: Container { get }
 }
 
 class MainRouter: Router, Closable {
@@ -26,9 +27,9 @@ class MainRouter: Router, Closable {
     weak var rootController: UIViewController?
     private var rootTransition: Transition
     
-    var container: DIContainer
+    var container: Container
     
-    init(rootTransition: Transition, container: DIContainer) {
+    init(rootTransition: Transition, container: Container) {
         self.rootTransition = rootTransition
         self.container = container
     }

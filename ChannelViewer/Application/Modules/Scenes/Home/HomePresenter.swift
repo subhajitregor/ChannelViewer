@@ -6,13 +6,15 @@
 //
 
 import Foundation
+import PromiseKit
 
-protocol HomePresenterToViewProtocol: AnyObject {
-    
+protocol HomeViewToPresenterProtocol {
+    func viewDidLoad()
 }
 
-protocol HomePresenterToInteractorProtocol {
-    
+protocol HomeInteractorToPresenterProtocol: AnyObject {
+    func onSuccess(channelsAndPrograms: [ChannelItem])
+    func onFailure(error: Error)
 }
 
 protocol HomePresenterToRouterProtocol {
@@ -23,17 +25,20 @@ final class HomePresenter {
     weak var view: HomePresenterToViewProtocol?
     var interactor: HomePresenterToInteractorProtocol?
     var router: HomePresenterToRouterProtocol?
-    
-    init(view: HomePresenterToViewProtocol?,
-         interactor: HomePresenterToInteractorProtocol?) {
-        
-    }
 }
 
 extension HomePresenter: HomeViewToPresenterProtocol {
-    func viewDidLoad() {}
+    func viewDidLoad() {
+        interactor?.fetchChannelsAndPrograms()
+    }
 }
 
 extension HomePresenter: HomeInteractorToPresenterProtocol {
+    func onSuccess(channelsAndPrograms: [ChannelItem]) {
+        print(channelsAndPrograms)
+    }
     
+    func onFailure(error: Error) {
+        print(error)
+    }
 }

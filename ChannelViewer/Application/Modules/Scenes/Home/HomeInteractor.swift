@@ -7,18 +7,22 @@
 
 import Foundation
 
-protocol HomeInteractorToPresenterProtocol: AnyObject {
-    
+protocol HomePresenterToInteractorProtocol {
+    func fetchChannelsAndPrograms()
 }
 
 final class HomeInteractor {
     weak var presenter: HomeInteractorToPresenterProtocol?
-    
-    init(presenter: HomeInteractorToPresenterProtocol?) {
-        self.presenter = presenter
-    }
+    var repository: HomeRepository?
 }
 
 extension HomeInteractor: HomePresenterToInteractorProtocol {
-    
+    func fetchChannelsAndPrograms() {
+        repository?.getAllChannelsAndPrograms()
+            .done { [weak self] channelItems in
+                self?.presenter?.onSuccess(channelsAndPrograms: channelItems)
+            } .catch { error in
+                self.presenter?.onFailure(error: error)
+            }
+    }
 }

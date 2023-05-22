@@ -89,6 +89,7 @@ final class HomeRemoteDataSource: HomeRemoteDataSourceProtocol {
                                                  accessNum: $0.accessNum,
                                                  callSign: $0.callSign,
                                                  _id: $0._id,
+                                                 createdAt: Date(),
                                                  program: groupedPrograms[$0._id ?? 0] ?? [])}
     }
 }
