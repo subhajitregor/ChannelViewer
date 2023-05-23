@@ -15,8 +15,8 @@ struct ProgramCVCellModel: CellViewModel {
     let name: String
     var onClick: ((ProgramCVCell) -> Void)?
     
-    var differenceIdentifier: Int {
-        return programId
+    var differenceIdentifier: String {
+        return "\(programId)"
     }
     
     func setup(cell: ProgramCVCell) {
@@ -24,7 +24,7 @@ struct ProgramCVCellModel: CellViewModel {
     }
     
     func isContentEqual(to source: ProgramCVCellModel) -> Bool {
-        return name == source.name
+        return programId == source.programId && name == source.name
     }
 }
 

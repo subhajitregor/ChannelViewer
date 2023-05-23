@@ -11,6 +11,7 @@ import DifferenceKit
 
 protocol HomePresenterToViewProtocol: AnyObject {
     func reloadData<C>(with stagedChangeset: StagedChangeset<C>, completion: @escaping (C) -> Void)
+    func reloadData()
     func showEmptyView()
     func showErrorStateView()
     func showChannelsAndPrograms()
@@ -40,7 +41,7 @@ final class HomeVC: BaseViewController {
     private var didSetupConstraints = false
     
     var presenter: HomeViewToPresenterProtocol?
-
+    
     // MARK: - Lifecycle Methods -
     
     override func viewDidLoad() {
@@ -88,7 +89,13 @@ private extension HomeVC {
 extension HomeVC: HomePresenterToViewProtocol {
     
     func reloadData<C>(with stagedChangeset: StagedChangeset<C>,  completion: @escaping (C) -> Void) {
-        programCollectionView.reload(using: stagedChangeset, setData: completion)
+        programCollectionView.reload(using: stagedChangeset) { collection in
+            completion(collection)
+        } completion: {}
+    }
+    
+    func reloadData() {
+        programCollectionView.reloadData()
     }
     
     func showEmptyView() {
@@ -141,5 +148,16 @@ extension HomeVC: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         10
+    }
+}
+
+extension HomeVC: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let offsetY = scrollView.contentOffset.y
+        let contentHeight = scrollView.contentSize.height
+        
+        if (offsetY > (contentHeight - scrollView.frame.height - 20)) {
+            presenter?.fetchNext()
+        }
     }
 }

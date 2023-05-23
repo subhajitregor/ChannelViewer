@@ -29,7 +29,7 @@ final class Page {
         self.currentPageNo = currentPage
     }
     
-    func startedFetching() {
+    func startFetching() {
         self.isFetching = true
     }
     
@@ -46,11 +46,15 @@ final class Page {
         self.limit
     }
     
-    func nextItemNo() -> Int {
-        self.totalItemsFetched() + 1
+    func nextOffset() -> Int {
+        self.currentOffset() == 0 ? 0 : self.currentOffset() + 1
     }
     
-    func totalItemsFetched() -> Int {
+    func currentOffset() -> Int {
         self.currentPageNo * limit
+    }
+    
+    func lastPageFetched() {
+        self.isLastPageFetched = true
     }
 }

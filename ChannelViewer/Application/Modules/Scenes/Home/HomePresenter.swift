@@ -11,6 +11,7 @@ import DifferenceKit
 
 protocol HomeViewToPresenterProtocol {
     func viewDidLoad()
+    func fetchNext()
     func numberOfSections() -> Int
     func numberOfItems(in section: Int) -> Int
     func item(at indexPath: IndexPath) -> CellViewAnyModel?
@@ -25,13 +26,47 @@ protocol HomePresenterToRouterProtocol {
     // TODO: implementation
 }
 
+extension HomePresenter {
+    struct Section: SectionViewModel {
+        var id: Int
+        var channelModel: ChannelCVCellModel?
+        var cells: [CellViewAnyModel]
+        
+        var differenceIdentifier: Int {
+            return id
+        }
+        
+        func isContentEqual(to source: HomePresenter.Section) -> Bool {
+            let equalChannel: Bool = {
+                switch (self.channelModel, source.channelModel) {
+                case (.none, .none): return true
+                case let (.some(left), .some(right)): return left.isContentEqual(to: right)
+                default: return false
+                }
+            }()
+            return self.id == source.id
+            && equalChannel
+            && self.cellsEqualTo(source.cells)
+        }
+    }
+}
+
+extension HomePresenter.Section: DifferentiableSection {
+    typealias Collection = [AnyDifferentiable]
+    init<C>(source: HomePresenter.Section, elements: C) where C: Swift.Collection, C.Element == HomePresenter.Section.Collection.Element {
+        self.id = source.id
+        self.channelModel = source.channelModel
+        self.cells = elements.compactMap { $0.base as? CellViewAnyModel }
+    }
+}
+
 final class HomePresenter {
     weak var view: HomePresenterToViewProtocol?
     var interactor: HomePresenterToInteractorProtocol?
     var router: HomePresenterToRouterProtocol?
     
-    typealias Section = ArraySection<ChannelCVCellModel, ProgramCVCellModel>
-    private var sectionsArray = [Section]()
+    private var sectionsArray: [HomePresenter.Section] = []
+    
     private let verticalPage = Page(currentPageNo: 0, limit: 5)
     private let horizontalPage = Page(currentPageNo: 0, limit: 10)
 }
@@ -39,7 +74,16 @@ final class HomePresenter {
 extension HomePresenter: HomeViewToPresenterProtocol {
     func viewDidLoad() {
         view?.showLoader()
-        interactor?.fetchChannelsAndPrograms()
+        verticalPage.startFetching()
+        interactor?.fetchChannelsAndPrograms(from: verticalPage.currentOffset(), limit: verticalPage.maxlimit())
+    }
+    
+    func fetchNext() {
+        if !verticalPage.isFetching && !verticalPage.isLastPageFetched {
+            view?.showLoader()
+            verticalPage.startFetching()
+            interactor?.fetchChannelsAndPrograms(from: verticalPage.nextOffset(), limit: verticalPage.maxlimit())
+        }
     }
     
     func numberOfSections() -> Int {
@@ -47,14 +91,14 @@ extension HomePresenter: HomeViewToPresenterProtocol {
     }
     
     func numberOfItems(in section: Int) -> Int {
-        sectionsArray[section].elements.count + 1
+        sectionsArray[section].cells.count + 1
     }
     
     func item(at indexPath: IndexPath) -> CellViewAnyModel? {
         if indexPath.item == 0 {
-            return sectionsArray[indexPath.section].model
+            return sectionsArray[indexPath.section].channelModel
         } else {
-            return sectionsArray[indexPath.section].elements[indexPath.item - 1]
+            return sectionsArray[indexPath.section].cells[indexPath.item - 1]
         }
     }
 }
@@ -68,14 +112,20 @@ extension HomePresenter: HomeInteractorToPresenterProtocol {
         dateOfPrograms?.forEach { date in
             print(date!)
         }
-        
-        let newSection = createCells(from: channelsAndPrograms)
-        let stagedChangeset = StagedChangeset(source: self.sectionsArray, target: newSection)
-        
+        verticalPage.fetchComplete()
+        if channelsAndPrograms.count < verticalPage.maxlimit() {
+            verticalPage.lastPageFetched()
+        }
+        let newSection =  createCells(from: channelsAndPrograms)
         view?.hideLoader()
-        view?.reloadData(with: stagedChangeset, completion: { collection in
-            self.sectionsArray = collection
-        })
+        sectionsArray.append(contentsOf: newSection)
+//        let stagedChangeSet = StagedChangeset(source: self.sectionsArray, target: newSection)
+//        if !stagedChangeSet.isEmpty {
+//            view?.reloadData(with: stagedChangeSet, completion: { collection in
+//                self.sectionsArray.append(contentsOf: collection)
+//            })
+//        }
+        view?.reloadData()
     }
     
     func onFailure(error: Error) {
@@ -90,7 +140,7 @@ extension HomePresenter {
         let section = array.compactMap { item in
             let model = ChannelCVCellModel(channelId: item._id ?? 0, name: item.callSign ?? "No Channel Name")
             let elements = item.program.compactMap { ProgramCVCellModel(programId: $0._id ?? 0, name: $0.name ?? "")}
-            return Section(model: model, elements: elements)
+            return Section(id: model.channelId, channelModel: model, cells: elements)
         }
         return section
     }

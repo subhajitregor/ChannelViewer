@@ -13,8 +13,9 @@ struct ChannelCVCellModel: CellViewModel {
     var onClick: ((ChannelCVCell) -> Void)?
     let channelId: Int
     let name: String
-    var differenceIdentifier: Int {
-        return channelId
+    
+    var differenceIdentifier: String {
+        return "\(channelId)"
     }
     
     func setup(cell: ChannelCVCell) {
@@ -22,7 +23,7 @@ struct ChannelCVCellModel: CellViewModel {
     }
     
     func isContentEqual(to source: ChannelCVCellModel) -> Bool {
-        return name == source.name
+        return channelId == source.channelId && name == source.name
     }
 }
 
