@@ -96,11 +96,11 @@ extension HomeVC: HomePresenterToViewProtocol {
     }
     
     func showErrorStateView() {
-        
+        // TODO: implementation
     }
     
     func showChannelsAndPrograms() {
-        
+        // TODO: implementation
     }
     
     func showLoader() {
