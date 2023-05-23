@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9F0B26202A1C589A00E4E000 /* ChannelCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0B261F2A1C589A00E4E000 /* ChannelCVCell.swift */; };
+		9F0B26232A1C778700E4E000 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0B26222A1C778700E4E000 /* BaseViewController.swift */; };
+		9F0B26252A1C81C600E4E000 /* CellViewAnyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0B26242A1C81C600E4E000 /* CellViewAnyModel.swift */; };
+		9F0B26292A1CAD7300E4E000 /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0B26282A1CAD7300E4E000 /* Page.swift */; };
+		9F533F742A1C1BB100AD1DB4 /* String+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F533F732A1C1BB100AD1DB4 /* String+Date.swift */; };
+		9F533F762A1C1F5E00AD1DB4 /* DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F533F752A1C1F5E00AD1DB4 /* DateExtensions.swift */; };
+		9F533F7B2A1C3A0500AD1DB4 /* ProgramCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F533F7A2A1C3A0500AD1DB4 /* ProgramCVCell.swift */; };
 		9F55C4922A09BAFA00C11690 /* CVAPIClient in Frameworks */ = {isa = PBXBuildFile; productRef = 9F55C4912A09BAFA00C11690 /* CVAPIClient */; };
 		9F55C4952A09BC7A00C11690 /* MainRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F55C4942A09BC7A00C11690 /* MainRouter.swift */; };
 		9F55C4982A09BCB700C11690 /* Transition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F55C4972A09BCB700C11690 /* Transition.swift */; };
@@ -80,6 +87,13 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		9F0B261F2A1C589A00E4E000 /* ChannelCVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelCVCell.swift; sourceTree = "<group>"; };
+		9F0B26222A1C778700E4E000 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		9F0B26242A1C81C600E4E000 /* CellViewAnyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellViewAnyModel.swift; sourceTree = "<group>"; };
+		9F0B26282A1CAD7300E4E000 /* Page.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Page.swift; sourceTree = "<group>"; };
+		9F533F732A1C1BB100AD1DB4 /* String+Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Date.swift"; sourceTree = "<group>"; };
+		9F533F752A1C1F5E00AD1DB4 /* DateExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtensions.swift; sourceTree = "<group>"; };
+		9F533F7A2A1C3A0500AD1DB4 /* ProgramCVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgramCVCell.swift; sourceTree = "<group>"; };
 		9F55C48F2A09BAED00C11690 /* CVAPIClient */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = CVAPIClient; sourceTree = "<group>"; };
 		9F55C4942A09BC7A00C11690 /* MainRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainRouter.swift; sourceTree = "<group>"; };
 		9F55C4972A09BCB700C11690 /* Transition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transition.swift; sourceTree = "<group>"; };
@@ -152,6 +166,41 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9F0B261E2A1C584000E4E000 /* CustomHelperClassesAndProtocols */ = {
+			isa = PBXGroup;
+			children = (
+				9F0B26242A1C81C600E4E000 /* CellViewAnyModel.swift */,
+				9F0B26282A1CAD7300E4E000 /* Page.swift */,
+			);
+			path = CustomHelperClassesAndProtocols;
+			sourceTree = "<group>";
+		};
+		9F0B26212A1C776900E4E000 /* AppStateBaseClasses */ = {
+			isa = PBXGroup;
+			children = (
+				9F0B26222A1C778700E4E000 /* BaseViewController.swift */,
+			);
+			path = AppStateBaseClasses;
+			sourceTree = "<group>";
+		};
+		9F533F722A1C1B3300AD1DB4 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				9F533F732A1C1BB100AD1DB4 /* String+Date.swift */,
+				9F533F752A1C1F5E00AD1DB4 /* DateExtensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		9F533F772A1C39A900AD1DB4 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				9F533F7A2A1C3A0500AD1DB4 /* ProgramCVCell.swift */,
+				9F0B261F2A1C589A00E4E000 /* ChannelCVCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		9F55C48E2A09BAED00C11690 /* Packages */ = {
 			isa = PBXGroup;
 			children = (
@@ -233,6 +282,7 @@
 		9F7F64F229ECF2DE00E5F5A1 /* ChannelViewer */ = {
 			isa = PBXGroup;
 			children = (
+				9F533F722A1C1B3300AD1DB4 /* Extensions */,
 				9F7F652029ECF41D00E5F5A1 /* AppDelegate */,
 				9F7F652229ECF46E00E5F5A1 /* Application */,
 				9F7F652129ECF45300E5F5A1 /* Resources */,
@@ -277,6 +327,8 @@
 		9F7F652229ECF46E00E5F5A1 /* Application */ = {
 			isa = PBXGroup;
 			children = (
+				9F0B26212A1C776900E4E000 /* AppStateBaseClasses */,
+				9F0B261E2A1C584000E4E000 /* CustomHelperClassesAndProtocols */,
 				9FA4C2B62A13A26600B11A20 /* Errors */,
 				9F7F652429ECF48100E5F5A1 /* DIContainer */,
 				9F7F652329ECF47700E5F5A1 /* Modules */,
@@ -308,6 +360,7 @@
 		9F7F652F29ED087600E5F5A1 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				9F533F772A1C39A900AD1DB4 /* Cells */,
 				9F7F652529ECFB6600E5F5A1 /* HomeVC.swift */,
 				9F7F653329ED08AE00E5F5A1 /* HomePresenter.swift */,
 				9F7F653029ED089600E5F5A1 /* HomeInteractor.swift */,
@@ -528,8 +581,10 @@
 			files = (
 				9F7F653129ED089600E5F5A1 /* HomeInteractor.swift in Sources */,
 				9F5F4FEE2A0A5E4800EFD1AD /* HomeAssembler.swift in Sources */,
+				9F533F7B2A1C3A0500AD1DB4 /* ProgramCVCell.swift in Sources */,
 				9FA4C2B82A13A28200B11A20 /* APIError.swift in Sources */,
 				9FA4C2B22A118A5400B11A20 /* HomeLocalDataSource.swift in Sources */,
+				9F0B26232A1C778700E4E000 /* BaseViewController.swift in Sources */,
 				9FA4C2ED2A1864D400B11A20 /* RepositoryAssembler.swift in Sources */,
 				9FA4C2E02A167C8500B11A20 /* ChannelItem.swift in Sources */,
 				9FA4C2E22A167C9000B11A20 /* Program.swift in Sources */,
@@ -542,8 +597,10 @@
 				9FA4C2E62A172F7100B11A20 /* CustomManagedObjectProtocols.swift in Sources */,
 				9FA4C2DC2A167C2500B11A20 /* CDProgram+CoreDataProperties.swift in Sources */,
 				9F7F653829ED098E00E5F5A1 /* DIContainer.swift in Sources */,
+				9F533F742A1C1BB100AD1DB4 /* String+Date.swift in Sources */,
 				9FA4C2AB2A0E8C4600B11A20 /* HomeDataRepository.swift in Sources */,
 				9FA4C2EB2A1862E500B11A20 /* DataSourceAssembler.swift in Sources */,
+				9F0B26252A1C81C600E4E000 /* CellViewAnyModel.swift in Sources */,
 				9FA4C2E82A1861C800B11A20 /* ServiceAssembler.swift in Sources */,
 				9FA4C2DE2A167C2500B11A20 /* CDChannelItem+CoreDataProperties.swift in Sources */,
 				9F55C4A02A09BE4F00C11690 /* HomeRoute.swift in Sources */,
@@ -554,8 +611,11 @@
 				9F55C49A2A09BD0500C11690 /* PushTransition.swift in Sources */,
 				9FA4C2E42A172EC800B11A20 /* CoreDataWorker.swift in Sources */,
 				9FA4C2B02A118A2500B11A20 /* HomeRemoteDataSource.swift in Sources */,
+				9F533F762A1C1F5E00AD1DB4 /* DateExtensions.swift in Sources */,
 				9FA4C2BE2A15168000B11A20 /* CoreDataService.swift in Sources */,
+				9F0B26202A1C589A00E4E000 /* ChannelCVCell.swift in Sources */,
 				9F55C4A52A09CA8E00C11690 /* ProgramRoute.swift in Sources */,
+				9F0B26292A1CAD7300E4E000 /* Page.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

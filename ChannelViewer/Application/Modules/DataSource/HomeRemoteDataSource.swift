@@ -71,7 +71,7 @@ final class HomeRemoteDataSource: HomeRemoteDataSourceProtocol {
     }
     
     private func createChannelItemModel(channels: [Channel], items: [ProgramItem] = []) -> [ChannelItem] {
-        var groupedPrograms: [Int: [Program]] = [:]
+        var groupedPrograms: [Int: [Program]] = [Int:[Program]]()
         
         if !items.isEmpty {
             for program in items {
@@ -81,7 +81,13 @@ final class HomeRemoteDataSource: HomeRemoteDataSourceProtocol {
                                          _id: program.recentAirTime?._id,
                                          channelID: program.recentAirTime?.channelID)
                 
-                groupedPrograms[program.recentAirTime?.channelID ?? 0]?.append(newProgram)
+                let key = program.recentAirTime?.channelID ?? 0
+                
+                if groupedPrograms[key] != nil {
+                    groupedPrograms[key]?.append(newProgram)
+                } else {
+                    groupedPrograms[key] = [newProgram]
+                }
             }
         }
         

@@ -30,7 +30,8 @@ extension ChannelItem: ManagedObjectConvertible {
         channel.callSign = callSign
         channel.orderNum = Int32(orderNum ?? 0)
         channel.createdAt = Date()
-        channel.programs = NSSet(array: program)
+        let cdPrograms = program.compactMap { $0.toManagedObject(in: context) }
+        channel.addToPrograms(NSSet(array: cdPrograms))
         return channel
     }
     
