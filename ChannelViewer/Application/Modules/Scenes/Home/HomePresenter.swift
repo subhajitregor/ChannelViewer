@@ -22,7 +22,7 @@ protocol HomeInteractorToPresenterProtocol: AnyObject {
 }
 
 protocol HomePresenterToRouterProtocol {
-    
+    // TODO: implementation
 }
 
 final class HomePresenter {
