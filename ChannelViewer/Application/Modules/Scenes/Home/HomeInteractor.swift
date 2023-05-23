@@ -8,7 +8,7 @@
 import Foundation
 
 protocol HomePresenterToInteractorProtocol {
-    func fetchChannelsAndPrograms()
+    func fetchChannelsAndPrograms(from offset: Int, limit: Int)
 }
 
 final class HomeInteractor {
@@ -17,8 +17,8 @@ final class HomeInteractor {
 }
 
 extension HomeInteractor: HomePresenterToInteractorProtocol {
-    func fetchChannelsAndPrograms() {
-        repository?.getAllChannelsAndPrograms()
+    func fetchChannelsAndPrograms(from offset: Int, limit: Int) {
+        repository?.getAllChannelsAndPrograms(from: offset, limit: limit)
             .done { [weak self] channelItems in
                 self?.presenter?.onSuccess(channelsAndPrograms: channelItems)
             } .catch { error in

@@ -12,17 +12,21 @@ import CoreData
 protocol CoreDataWorkerProtocol {
     func get<Entity: ManagedObjectConvertible>(with predicate: NSPredicate?,
                                                sortDescriptors: [NSSortDescriptor]?,
+                                               fetchOffset: Int?,
                                                fetchLimit: Int?) -> Promise<[Entity]>
     
     func updateOrInsert<Entity: ManagedObjectConvertible>
-        (entities: [Entity]) -> Promise<Bool>
+    (entities: [Entity]) -> Promise<Bool>
+    
+    func deleteAll<Entity: ManagedObjectConvertible>(_ entity: Entity.Type) -> Promise<Bool>
 }
 
 extension CoreDataWorkerProtocol {
     func get<Entity: ManagedObjectConvertible>(with predicate: NSPredicate? = nil,
                                                sortDescriptors: [NSSortDescriptor]? = nil,
+                                               fetchOffset: Int? = nil,
                                                fetchLimit: Int? = nil) -> Promise<[Entity]> {
-        get(with: predicate, sortDescriptors: sortDescriptors, fetchLimit: fetchLimit)
+        get(with: predicate, sortDescriptors: sortDescriptors, fetchOffset: fetchOffset, fetchLimit: fetchLimit)
     }
 }
 
@@ -33,7 +37,7 @@ enum CoreDataWorkerError: Error {
 }
 
 final class CoreDataWorker: CoreDataWorkerProtocol {
-
+    
     let coreData: CoreDataServiceProtocol
     
     init(coreData: CoreDataServiceProtocol = CoreDataService.shared) {
@@ -41,17 +45,23 @@ final class CoreDataWorker: CoreDataWorkerProtocol {
     }
     
     func get<Entity: ManagedObjectConvertible>(with predicate: NSPredicate? = nil,
-                     sortDescriptors: [NSSortDescriptor]? = nil,
-                     fetchLimit: Int? = nil) -> PromiseKit.Promise<[Entity]> {
+                                               sortDescriptors: [NSSortDescriptor]? = nil,
+                                               fetchOffset: Int? = nil,
+                                               fetchLimit: Int? = nil) -> PromiseKit.Promise<[Entity]> {
         return Promise{ seal in
             coreData.performForegroundTask { context in
                 do {
                     let fetchRequest = Entity.ManagedObject.fetchRequest()
                     fetchRequest.predicate = predicate
                     fetchRequest.sortDescriptors = sortDescriptors
+                    
                     if let fetchLimit = fetchLimit {
                         fetchRequest.fetchLimit = fetchLimit
                     }
+                    if let fetchOffset = fetchOffset {
+                        fetchRequest.fetchOffset = fetchOffset
+                    }
+                    
                     let results = try context.fetch(fetchRequest) as? [Entity.ManagedObject]
                     let items: [Entity] = results?.compactMap { $0.toEntity() as? Entity } ?? []
                     if items.isEmpty {
@@ -82,5 +92,28 @@ final class CoreDataWorker: CoreDataWorkerProtocol {
         }
     }
     
-    
+    func deleteAll<Entity: ManagedObjectConvertible>(_ entity: Entity.Type) -> Promise<Bool> {
+        return Promise { seal in
+            coreData.performBackgroundTask { context in
+                let fetchRequest = Entity.ManagedObject.fetchRequest()
+                fetchRequest.returnsObjectsAsFaults = false
+                do {
+                    let results = try context.fetch(fetchRequest)
+                    if !results.isEmpty {
+                        for object in results {
+                            guard let objectData = object as? NSManagedObject else {continue}
+                            context.delete(objectData)
+                            seal.fulfill(true)
+                        }
+                    } else {
+                        seal.fulfill(false)
+                    }
+                } catch let error {
+                    print("Detele all data in \(entity) error :", error)
+                    seal.reject(error)
+                }
+            }
+            
+        }
+    }
 }

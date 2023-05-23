@@ -15,6 +15,23 @@ extension Array where Element == CellViewAnyModel {
     }
 }
 
+protocol SectionViewModel {
+    var cells: [CellViewAnyModel] { get }
+}
+
+extension SectionViewModel {
+    func cellsEqualTo(_ cells: [CellViewAnyModel]) -> Bool {
+        return self.cells == cells
+    }
+}
+
+extension DifferentiableSection where Self: SectionViewModel {
+    var elements: [AnyDifferentiable] {
+        return cells.map { $0.anyDifferentiable }
+    }
+}
+
+
 protocol CellViewAnyModel {
     static var cellAnyType: UIView.Type { get }
     static var identifier: String { get }

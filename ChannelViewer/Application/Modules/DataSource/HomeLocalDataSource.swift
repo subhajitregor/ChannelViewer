@@ -10,7 +10,7 @@ import PromiseKit
 
 protocol HomeLocalDataSourceProtocol {
     func insertIntoLocalData(from channelItems: [ChannelItem]) -> Promise<Bool>
-    func fetchFromLocalData() -> Promise<[ChannelItem]>
+    func fetchLocalData(from offset: Int, limit: Int) -> Promise<[ChannelItem]>
 }
 
 final class HomeLocalDataSource: HomeLocalDataSourceProtocol {
@@ -22,11 +22,15 @@ final class HomeLocalDataSource: HomeLocalDataSourceProtocol {
     
     func insertIntoLocalData(from channelItems: [ChannelItem]) -> Promise<Bool> {
         guard let worker = worker else { return .value(false) }
-        return worker.updateOrInsert(entities: channelItems)
+        return worker.deleteAll(ChannelItem.self)
+            .then { _ in
+                worker.updateOrInsert(entities: channelItems)
+            }
     }
     
-    func fetchFromLocalData() -> PromiseKit.Promise<[ChannelItem]> {
+    func fetchLocalData(from offset: Int, limit: Int) -> Promise<[ChannelItem]> {
         guard let worker = worker else { return .value([]) }
-        return worker.get()
+        let sortDescriptor = NSSortDescriptor(key: "orderNum", ascending: true)
+        return worker.get(sortDescriptors: [sortDescriptor], fetchOffset: offset, fetchLimit: limit)
     }
 }

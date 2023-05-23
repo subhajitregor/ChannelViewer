@@ -9,7 +9,7 @@ import Foundation
 import PromiseKit
 
 protocol HomeRepository {
-    func getAllChannelsAndPrograms() -> Promise<[ChannelItem]>
+    func getAllChannelsAndPrograms(from offset: Int, limit: Int) -> Promise<[ChannelItem]>
 }
 
 enum HomeRepositoryError: Error {
@@ -29,26 +29,32 @@ final class HomeDataRepository: HomeRepository {
         self.localDataSource = localDataSource
     }
     
-    func getAllChannelsAndPrograms() -> Promise<[ChannelItem]> {
+    func getAllChannelsAndPrograms(from offset: Int, limit: Int) -> Promise<[ChannelItem]> {
         return Promise { [weak self] seal in
-            self?.startFetch().done({ channelItems in
+            guard let self = self else { return }
+            
+            self.startFetch(from: offset, limit: limit).done({ channelItems in
                 seal.fulfill(channelItems)
-            }) .recover({ error in
-                self?.fetchDataFromRemote().done({ items in
-                    self?.localDataSource.insertIntoLocalData(from: items).cauterize()
-                    return seal.fulfill(items)
-                }).catch({ error in
-                    seal.reject(error)
-                })
+            }) .recover({  error in
+                self.fetchDataFromRemote()
+                    .then({ items in
+                        self.localDataSource.insertIntoLocalData(from: items)
+                    })
+                    .then({ _ in
+                        self.startFetch(from: offset, limit: limit)
+                    })
+                    .catch({ error in
+                        seal.reject(error)
+                    })
             })
         }
     }
 }
 
 private extension HomeDataRepository {
-    func startFetch() -> Promise<[ChannelItem]> {
+    func startFetch(from offset: Int, limit: Int) -> Promise<[ChannelItem]> {
         return Promise { [weak self] seal in
-            self?.checkForDataInLocal().done { channelItems in
+            self?.checkForDataInLocal(from: offset, limit: limit).done { channelItems in
                 return seal.fulfill(channelItems)
             } .catch { error in
                 seal.reject(error)
@@ -56,18 +62,18 @@ private extension HomeDataRepository {
         }
     }
     
-    func checkForDataInLocal() -> Promise<[ChannelItem]> {
+    func checkForDataInLocal(from offset: Int, limit: Int) -> Promise<[ChannelItem]> {
         return Promise { [weak self] seal in
-            self?.localDataSource.fetchFromLocalData()
+            self?.localDataSource.fetchLocalData(from: offset, limit: limit)
                 .done({ channelItems in
                     if self?.canUseLocalData(date: channelItems.first?.createdAt) ?? false {
                         seal.fulfill(channelItems)
                     } else {
                         seal.reject(HomeRepositoryError.oldDataInLocal)
                     }
-            }) .catch { error in
-                seal.reject(error)
-            }
+                }) .catch { error in
+                    seal.reject(error)
+                }
         }
     }
     
