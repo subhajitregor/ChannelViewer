@@ -112,20 +112,21 @@ extension HomePresenter: HomeInteractorToPresenterProtocol {
         dateOfPrograms?.forEach { date in
             print(date!)
         }
-        verticalPage.fetchComplete()
+        
         if channelsAndPrograms.count < verticalPage.maxlimit() {
             verticalPage.lastPageFetched()
         }
-        let newSection =  createCells(from: channelsAndPrograms)
+        let newSection = createCells(from: channelsAndPrograms)
+        let targetArray = sectionsArray + newSection
         view?.hideLoader()
-        sectionsArray.append(contentsOf: newSection)
-//        let stagedChangeSet = StagedChangeset(source: self.sectionsArray, target: newSection)
-//        if !stagedChangeSet.isEmpty {
-//            view?.reloadData(with: stagedChangeSet, completion: { collection in
-//                self.sectionsArray.append(contentsOf: collection)
-//            })
-//        }
-        view?.reloadData()
+        let stagedChangeSet = StagedChangeset(source: self.sectionsArray, target: targetArray)
+        if !stagedChangeSet.isEmpty {
+            view?.reloadData(with: stagedChangeSet, completion: { collection in
+                self.sectionsArray = collection
+                self.verticalPage.fetchComplete()
+            })
+        }
+        
     }
     
     func onFailure(error: Error) {
