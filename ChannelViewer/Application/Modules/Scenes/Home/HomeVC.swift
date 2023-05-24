@@ -89,9 +89,10 @@ private extension HomeVC {
 extension HomeVC: HomePresenterToViewProtocol {
     
     func reloadData<C>(with stagedChangeset: StagedChangeset<C>,  completion: @escaping (C) -> Void) {
-        programCollectionView.reload(using: stagedChangeset) { collection in
-            completion(collection)
-        } completion: {}
+//        programCollectionView.reload(using: stagedChangeset) { collection in
+//            completion(collection)
+//        } completion: {}
+        programCollectionView.reload(using: stagedChangeset, setData: completion)
     }
     
     func reloadData() {
